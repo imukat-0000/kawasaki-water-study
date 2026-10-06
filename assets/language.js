@@ -41,7 +41,7 @@
   entries.forEach(({element,ja,en})=>element.innerHTML=lang==='en'?en:ja);
   attrs.forEach(({el,name,ja,en})=>el.setAttribute(name,lang==='en'?en:ja));
   toggle.textContent=lang==='en'?'日本語':'EN';toggle.lang=lang==='en'?'ja':'en';toggle.setAttribute('aria-label',lang==='en'?'Switch to Japanese':'英語に切り替え');
-  document.title=lang==='en'?'Kaito Kawasaki | Portfolio Preview':originalTitle;
+  document.title=lang==='en'?'Kaito Kawasaki (Metal-Casting Artist) | KOGEI REALISM':originalTitle;
   try{localStorage.setItem('kawasaki-language',lang)}catch{}
   document.querySelectorAll('a[href^="/kawasaki-water-study/pages/"]').forEach(a=>{
    const path=a.getAttribute('href').replace('-en.html','.html');
