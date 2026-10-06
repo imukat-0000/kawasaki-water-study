@@ -1,0 +1,93 @@
+/* Recommended study: an editorial portfolio with clear object labels. */
+.sheet{width:82%;max-width:1320px;padding-top:32px}
+.sheet>.paper-panel{margin-bottom:100px}
+.sheet>.intro-paper{width:100%}
+.sheet>.section.paper-panel{width:100%!important;margin-left:0!important;margin-right:0!important;padding:80px 7% 90px!important}
+.paper-material{background:rgba(255,254,249,.97);mask-image:none!important;-webkit-mask-image:none!important}
+.paper-material:before{opacity:.5}
+.sheet.cutout-ready :is(h2,h3,p,a,span,dt,dd,figcaption,button){color:#3c484b!important;-webkit-text-fill-color:currentColor;-webkit-text-stroke:0!important;text-shadow:none!important}
+.intro-paper>.paper-material{mask-image:var(--hero-mask)!important}
+.intro-paper .masthead{justify-content:flex-end;margin:0 7%;padding-top:30px}
+.intro-paper nav{font-size:12px;gap:32px}
+.intro-paper .hero{grid-template-columns:72% 16%;gap:12%;padding:65px 7% 55px;min-height:0;align-items:center}
+.hero .hero-art{grid-row:1;grid-column:1;margin:0;width:100%;align-self:center}
+.hero .hero-art img{max-height:540px;object-fit:contain}
+.hero .hero-art figcaption{font:11px var(--sans);margin-top:18px}
+.hero .hero-type{grid-column:2;align-self:start;margin-top:42px;column-gap:18px}
+.hero h1{font-size:clamp(40px,4.1vw,62px);line-height:1.35;letter-spacing:.16em}
+.hero .artist-discipline{font-size:12px;letter-spacing:.14em}
+.hero .roman{font-size:8px;letter-spacing:.12em}
+#works .collection-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:70px;gap:0}
+#works .collection-heading h2,#exhibitions>.exhibition-heading{writing-mode:horizontal-tb;font-size:25px;letter-spacing:.12em;margin:0}
+#works .collection-heading>span{font-size:11px;padding:0}
+#works .works-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:65px 24px;width:100%;margin:0;align-items:start}
+#works .work-card{display:block;width:100%;margin:0;min-width:0;grid-column:span 4}
+#works .work-card:first-child{grid-column:1/-1;display:grid;grid-template-columns:22% 1fr;gap:6%;align-items:end;margin:0 0 40px}
+#works .work-card:first-child img{grid-column:2;grid-row:1;aspect-ratio:auto;max-height:570px;object-fit:contain}
+#works .work-card:first-child .work-caption{grid-column:1;grid-row:1;display:block;padding-bottom:12px}
+#works .work-card:nth-child(2){grid-column:1/7;width:92%;margin:0 0 70px}
+#works .work-card:nth-child(3){grid-column:8/13;margin-top:100px}
+#works .work-card img{width:100%;aspect-ratio:4/3;object-fit:contain;background:none}
+#works .work-card .work-caption{display:block;padding-top:20px}
+#works .work-card .work-index,#works .work-card .eyebrow{display:none}
+#works .work-card .work-caption h3{font-size:22px;line-height:1.6;font-weight:400;letter-spacing:.03em;margin:0 0 8px}
+#works .work-card .work-caption p{font:11px var(--sans);line-height:1.8;margin:0}
+#works .work-card:nth-child(n+4) .work-caption h3{font-size:17px}
+#works>.text-link{margin-top:65px;font-size:13px}
+#exhibitions>.exhibition-heading{margin-bottom:50px}
+#exhibitions .featured-show{grid-template-columns:32% 48%;gap:20%;margin:0 0 70px;align-items:center}
+#exhibitions .featured-show>div{padding:0}
+#exhibitions .featured-show h3{font-size:32px;line-height:1.6;margin-bottom:28px}
+#exhibitions .featured-show p{font-size:14px;line-height:2}
+#exhibitions .featured-show .date{font:13px var(--sans)}
+#exhibitions .exhibition-list{width:100%;margin:0}
+#exhibitions .exhibition-list article{display:grid;grid-template-columns:32% 1fr;gap:8%;padding:25px 0}
+#exhibitions .exhibition-list .date{font:12px var(--sans);line-height:1.8;margin:0}
+#exhibitions .exhibition-list h3{font-size:19px;line-height:1.6}
+#exhibitions .exhibition-list p{font-size:13px}
+#profile.artist-colophon{grid-template-columns:56% 27%;gap:17%}
+#profile .artist-introduction{padding-top:0}
+#profile .artist-introduction>h2{font-size:32px}
+#profile .artist-introduction>p,#profile .philosophy-copy p{font-size:15px;line-height:2.1}
+#profile .philosophy-copy{margin-top:55px}
+#profile .bio-list{font-size:12px;line-height:1.9;margin-top:35px}
+#profile .artist-record .portrait{max-width:220px;float:none}
+.sheet>#contact.glass-panel{width:88%!important;margin-left:auto!important;min-height:0;padding:65px 7% 50px!important}
+#contact{grid-template-columns:25% 1fr;gap:0 10%;align-items:start}
+#contact>h2{writing-mode:horizontal-tb;font-size:22px;letter-spacing:.07em;line-height:1.7;grid-row:1/5}
+#contact>p{margin:0;font-size:13px}
+#contact .email{font:clamp(15px,1.65vw,24px) var(--sans);margin-top:18px;line-height:1.6}
+#contact .social-links,#contact .related-links{font-size:12px;margin-top:25px}
+#contact .footer{margin-top:60px}
+#contact .glass-material{background:linear-gradient(120deg,#bdcbd05c,#849ba45c);backdrop-filter:blur(12px)}
+.sheet.cutout-ready #contact.glass-panel :is(h2,p,a,span){color:#fff!important;-webkit-text-fill-color:#fff;-webkit-text-stroke:0!important;text-shadow:0 1px 3px #233f4ed0!important}
+#contact .footer p{font-size:10px}
+@media(max-width:850px){.hero .hero-type{column-gap:9px}.hero h1{font-size:42px}.hero .roman{font-size:7px}.hero .artist-discipline{font-size:10px}.intro-paper .hero{grid-template-columns:69% 20%;gap:11%}#works .work-card:first-child{display:block}#works .work-card:first-child .work-caption{padding-top:20px}}
+@media(max-width:650px){
+ .sheet{width:90%;padding-top:16px}.sheet>.paper-panel{margin-bottom:55px}
+ .sheet>.section.paper-panel{padding:45px 7% 55px!important}
+ .intro-paper .masthead{padding-top:22px}.intro-paper nav{font-size:10px;gap:18px}
+ .intro-paper .hero{display:flex;flex-direction:column;align-items:stretch;gap:40px;padding:45px 7% 40px}
+ .hero .hero-type{display:block;margin:0;align-self:auto}
+ .hero h1{writing-mode:horizontal-tb;font-size:34px;letter-spacing:.12em;margin-bottom:14px}
+ .hero .artist-discipline{writing-mode:horizontal-tb;font-size:11px;margin-top:18px}
+ .hero .roman{text-align:left;font-size:8px;margin:0}
+ .hero .hero-art{width:100%;margin:0;align-self:auto}.hero .hero-art img{height:auto}
+ #works .collection-heading{margin-bottom:40px}#works .collection-heading h2,#exhibitions>.exhibition-heading{font-size:22px}
+ #works .works-grid{grid-template-columns:1fr 1fr;gap:40px 15px}
+ #works .work-card:first-child{grid-column:1/-1;margin:0 0 20px}
+ #works .work-card:nth-child(2),#works .work-card:nth-child(3){grid-column:auto;width:100%;margin:0}
+ #works .work-card:nth-child(3){margin-top:45px}
+ #works .work-card:nth-child(n+4){grid-column:auto}
+ #works .work-card .work-caption h3,#works .work-card:nth-child(n+4) .work-caption h3{font-size:15px}
+ #works .work-card:first-child .work-caption h3{font-size:22px}
+ #exhibitions .featured-show{display:block}#exhibitions .featured-show img{width:70%}
+ #exhibitions .featured-show>div{padding:30px 0 0}#exhibitions .featured-show h3{font-size:27px}
+ #exhibitions .exhibition-list article{grid-template-columns:1fr;gap:9px}
+ #exhibitions .exhibition-list h3{font-size:17px}
+ #profile .artist-introduction>p,#profile .philosophy-copy p{font-size:14px}
+ #profile .philosophy-copy{padding:0}
+ #profile .artist-record{margin-top:50px}#profile .bio-list{font-size:11px;margin-top:0}
+ .sheet>#contact.glass-panel{width:100%!important;padding:45px 7%!important}
+ #contact{display:block}#contact>h2{margin-bottom:25px}#contact .email{font-size:16px}
+}

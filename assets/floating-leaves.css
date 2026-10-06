@@ -1,0 +1,14 @@
+.floating-leaves{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.floating-leaf{position:absolute;width:clamp(50px,7.5vw,var(--leaf-size));aspect-ratio:1;animation:leaf-drift var(--duration) ease-in-out var(--delay) infinite;will-change:transform}
+.floating-leaf img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 1px 1px #edf9f9a0) drop-shadow(2px 3px 3px #29495645);animation:leaf-rock 11s ease-in-out var(--delay) infinite;transform-origin:50% 55%}
+@keyframes leaf-drift{0%,100%{transform:translate(-50%,-50%) translate(-13px,7px) rotate(var(--angle))}45%{transform:translate(-50%,-50%) translate(24px,-16px) rotate(calc(var(--angle) + 16deg))}75%{transform:translate(-50%,-50%) translate(7px,16px) rotate(calc(var(--angle) + 6deg))}}
+@keyframes leaf-rock{0%,100%{transform:rotate(-3deg) scaleY(.99)}50%{transform:rotate(3deg) scaleY(.95)}}
+.floating-leaves.is-paused .floating-leaf,.floating-leaves.is-paused img{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.floating-leaf,.floating-leaf img{animation-play-state:paused}}
+
+/* Position and rotation now share the water simulation clock. */
+.floating-leaf{animation:none;transform:translate(-50%,-50%) rotate(var(--angle))}
+
+/* Overlapping leaves cover the water, with deliberately open pools. */
+.floating-leaf{width:var(--leaf-size)}
+.floating-leaf img{filter:hue-rotate(var(--tint,0deg)) brightness(var(--light,1)) drop-shadow(1px 2px 2px #29495640)}

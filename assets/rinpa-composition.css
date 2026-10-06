@@ -1,0 +1,129 @@
+/* Composition studies: unequal masses, intervals, and repeated image groups. */
+.sheet{padding-top:45px;padding-bottom:100px}
+.sheet>.paper-panel{margin-bottom:clamp(85px,11vw,170px)}
+.sheet>#works{width:96%;margin-right:auto;padding:100px 6% 115px!important}
+.sheet>#exhibitions{width:88%;margin-left:auto;padding:80px 7% 100px!important}
+.sheet>#profile{width:96%;margin-right:auto;padding:90px 7% 110px!important}
+.sheet>#contact{width:88%;margin-left:auto;padding:85px 7% 65px!important}
+.intro-paper .masthead{margin:0 6%;padding:30px 0 0;justify-content:flex-start}
+.intro-paper nav{gap:28px;font-size:11px;max-width:none}
+.intro-paper .hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 23%;gap:12%;padding:70px 7% 80px;align-items:start;min-height:690px}
+.hero .hero-type{grid-column:2;grid-row:1;padding:0;display:grid;grid-template-columns:1fr auto;column-gap:22px;justify-self:end}
+.hero h1{grid-column:2;grid-row:1;writing-mode:vertical-rl;text-orientation:upright;font-size:clamp(42px,4.2vw,64px);line-height:1.35;letter-spacing:.17em;margin:0;white-space:nowrap;font-weight:400}
+.hero .artist-discipline{grid-column:1;grid-row:1;writing-mode:vertical-rl;text-orientation:upright;justify-self:end;font-size:12px;letter-spacing:.15em;margin:12px 0 0;line-height:1.8}
+.hero .roman{grid-column:1/-1;grid-row:2;font-size:8px;letter-spacing:.16em;margin:28px 0 0;text-align:right;white-space:nowrap}
+.hero .hero-art{grid-column:1;grid-row:1;align-self:end;width:100%;margin:165px 0 0;justify-self:start}
+.hero .hero-art img{width:100%;height:auto;max-height:none;object-fit:contain}
+.hero .hero-art figcaption{text-align:left;font-size:10px;letter-spacing:.06em;margin:18px 0 0}
+#works .collection-heading{justify-content:flex-start;align-items:start;gap:25px;margin-bottom:70px}
+#works .collection-heading h2{writing-mode:vertical-rl;font-size:23px;letter-spacing:.25em;line-height:1.6}
+#works .collection-heading>span{font-size:9px;padding-top:7px}
+#works .art-stage{display:grid;grid-template-columns:20% minmax(0,1fr);column-gap:8%;padding:0;border:0;align-items:end}
+#works .stage-image-link{grid-column:2;grid-row:1;margin:0}
+#works .stage-image{width:100%;height:auto;max-height:75vh;object-fit:contain}
+#works .stage-caption{grid-column:1;grid-row:1;display:block;padding:0 0 18px;margin:0}
+#works .stage-title{font-size:24px;line-height:1.6;margin:0 0 15px}
+#works .stage-date,#works .stage-material{font-size:10px;line-height:1.9;margin:0}
+#works .stage-detail{margin:28px 0 0;font-size:11px;padding:0}
+#works .gallery-controls{justify-content:flex-start;margin-top:35px;gap:12px}
+#works .gallery-button{width:28px;height:30px;border:0;border-radius:0}
+#works .gallery-count{font-size:8px;display:block}
+#works .works-grid{width:100%;display:grid;grid-template-columns:1fr 1.12fr .8fr 1.15fr .9fr 1fr;gap:18px;margin:105px 0 0;align-items:start}
+#works .art-choice{padding:0 0 12px;min-width:0}
+#works .art-choice img{width:100%;height:auto;aspect-ratio:1;object-fit:contain}
+#works .art-choice:nth-child(1){margin-top:45px}
+#works .art-choice:nth-child(2){margin-top:18px}
+#works .art-choice:nth-child(3){margin-top:0;margin-right:14px}
+#works .art-choice:nth-child(4){margin-top:80px;margin-left:20px}
+#works .art-choice:nth-child(5){margin-top:115px}
+#works .art-choice:nth-child(6){margin-top:75px}
+#works .art-choice span{font-size:10px;line-height:1.8;margin-top:12px}
+#works>.text-link{margin:55px 0 0 auto}
+#exhibitions>.exhibition-heading{writing-mode:vertical-rl;font-size:23px;letter-spacing:.25em;margin:0 0 65px auto;line-height:1.6}
+#exhibitions .featured-show{grid-template-columns:38% 43%;justify-content:space-between;align-items:start;margin:0 0 75px;gap:0}
+#exhibitions .featured-show img{width:100%;max-width:none}
+#exhibitions .featured-show>div{padding:110px 0 0}
+#exhibitions .featured-show h3{font-size:clamp(25px,2.6vw,37px);line-height:1.8;margin:0 0 30px}
+#exhibitions .featured-show p{font-size:12px;line-height:2}
+#exhibitions .featured-show .date{font-size:11px}
+#exhibitions .exhibition-list{width:68%;margin:0 0 0 auto}
+#exhibitions .exhibition-list article{display:block;padding:18px 0;border-top:1px solid #66666620}
+#exhibitions .exhibition-list .date{font-size:10px;margin-bottom:7px}
+#exhibitions .exhibition-list h3{font-size:16px;margin:0 0 6px}
+#exhibitions .exhibition-list p{font-size:11px;line-height:1.8}
+#profile.artist-colophon{grid-template-columns:52% 27%;column-gap:21%;align-items:start}
+#profile .artist-introduction{padding-top:145px}
+#profile .artist-introduction>h2{font-size:34px;margin:0 0 12px}
+#profile .artist-introduction>p,#profile .philosophy-copy p{font-size:13px;line-height:2.2}
+#profile .artist-introduction .artist-role{font-size:11px;margin:0 0 40px}
+#profile .philosophy-copy{margin-top:70px}
+#profile .philosophy-copy h3{font-size:20px;margin-bottom:25px}
+#profile .artist-record{display:block;margin:0}
+#profile .portrait{width:100%;max-width:none}
+#profile .bio-list{margin-top:65px;font-size:11px;line-height:2}
+#profile .bio-list>div{margin-bottom:26px}
+#contact{grid-template-columns:25% 1fr;column-gap:17%;align-items:start}
+#contact>h2{writing-mode:vertical-rl;letter-spacing:.16em;font-size:20px;line-height:1.65;grid-row:1/5;justify-self:start}
+#contact>p{margin:95px 0 0;grid-column:2;font-size:11px}
+#contact .email{font-size:clamp(12px,1.3vw,19px);margin-top:16px}
+#contact .social-links,#contact .related-links{gap:18px;font-size:11px;line-height:1.9}
+#contact .footer{margin-top:100px;padding-top:25px}
+#contact .footer p{font-size:8px}
+@media(max-width:850px){
+ .intro-paper .hero{min-height:610px;gap:8%;grid-template-columns:minmax(0,1fr) 25%}
+ .hero .hero-type{column-gap:12px}.hero h1{font-size:44px}.hero .artist-discipline{font-size:11px}
+ #works .stage-title{font-size:20px}#works .art-stage{grid-template-columns:24% minmax(0,1fr);column-gap:6%}
+ #works .works-grid{gap:12px}#works .art-choice span{font-size:9px}
+ #profile.artist-colophon{grid-template-columns:54% 31%;column-gap:15%}
+ #exhibitions .featured-show>div{padding-top:65px}
+ #contact{grid-template-columns:20% 1fr;column-gap:12%}
+}
+@media(max-width:650px){
+ .sheet{padding-top:20px;padding-bottom:45px}
+ .sheet>.paper-panel{margin-bottom:65px}
+ .sheet>#works,.sheet>#profile{width:100%;padding:55px 7% 65px!important}
+ .sheet>#exhibitions,.sheet>#contact{width:94%;padding:50px 7% 60px!important}
+ .intro-paper .masthead{padding-top:25px;margin:0 7%}
+ .intro-paper nav{font-size:10px;gap:14px;justify-content:flex-start}
+ .intro-paper .hero{grid-template-columns:1fr 32%;gap:8%;min-height:560px;padding:55px 7% 50px}
+ .hero .hero-type{column-gap:7px}.hero h1{font-size:35px;letter-spacing:.15em}.hero .artist-discipline{font-size:9px;margin-top:5px}
+ .hero .roman{font-size:6px;letter-spacing:.02em;margin-top:20px}
+ .hero .hero-art{grid-column:1/-1;width:78%;margin:290px 0 0;align-self:end}
+ .hero .hero-art figcaption{font-size:9px;margin-top:12px}
+ #works .collection-heading{margin-bottom:50px;gap:18px}
+ #works .collection-heading h2,#exhibitions>.exhibition-heading{font-size:20px}
+ #works .collection-heading>span{font-size:8px}
+ #works .art-stage{display:block}
+ #works .stage-image-link{width:92%;margin-left:auto}
+ #works .stage-caption{display:grid;grid-template-columns:1fr auto;gap:10px;margin:24px 0 0;padding:0}
+ #works .stage-title{font-size:21px;margin-bottom:8px}
+ #works .stage-caption>div[aria-live]{grid-column:1;grid-row:1}
+ #works .stage-detail{grid-column:1;grid-row:2;margin:10px 0 0}
+ #works .gallery-controls{grid-column:2;grid-row:1/3;margin:0;gap:6px;align-self:end}
+ #works .gallery-count{font-size:7px}#works .gallery-button{width:24px}
+ #works .works-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:25px 12px;margin-top:65px}
+ #works .art-choice:nth-child(1){margin-top:28px}#works .art-choice:nth-child(2){margin-top:10px}#works .art-choice:nth-child(3){margin:0}
+ #works .art-choice:nth-child(4){margin:0}#works .art-choice:nth-child(5){margin:30px 0 0}#works .art-choice:nth-child(6){margin:15px 0 0}
+ #works .art-choice span{font-size:9px}
+ #exhibitions>.exhibition-heading{margin-bottom:45px}
+ #exhibitions .featured-show{display:block;margin-bottom:45px}
+ #exhibitions .featured-show img{width:64%}
+ #exhibitions .featured-show>div{padding:45px 0 0 16%}
+ #exhibitions .featured-show h3{font-size:27px;margin-bottom:22px}
+ #exhibitions .exhibition-list{width:88%}
+ #exhibitions .exhibition-list h3{font-size:15px}
+ #profile.artist-colophon{display:flex;flex-direction:column}
+ #profile .artist-introduction{padding-top:0}
+ #profile .artist-introduction>h2{font-size:30px}
+ #profile .philosophy-copy{margin-top:50px;padding-left:12%}
+ #profile .artist-introduction>p,#profile .philosophy-copy p{font-size:12px}
+ #profile .artist-record{display:grid;grid-template-columns:28% 1fr;gap:12%;margin-top:70px}
+ #profile .bio-list{margin:40px 0 0;font-size:10px}
+ #contact{display:grid;grid-template-columns:18% 1fr;column-gap:12%}
+ #contact>h2{font-size:17px;grid-row:1/5;grid-column:1;margin:0}
+ #contact>p{margin-top:55px;font-size:10px}
+ #contact>p,#contact .email,#contact .social-links,#contact .related-links{grid-column:2}
+ #contact .email{font-size:12px;overflow-wrap:anywhere;max-width:100%;width:auto}
+ #contact .social-links,#contact .related-links{font-size:10px;gap:10px 16px}
+ #contact .footer{margin-top:65px}
+}

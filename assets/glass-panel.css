@@ -1,0 +1,8 @@
+/* A tinted glass plate keeps the moving water visible behind white lettering. */
+.sheet>#exhibitions.glass-panel{border:1px solid rgba(255,255,255,.7)!important;box-shadow:0 12px 32px #193b4926,2px 3px 0 #e2f2f36b,inset 0 0 0 1px #ffffff24;color:#fff}
+.glass-material{position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(125deg,rgba(232,242,244,.22),rgba(162,188,197,.24) 65%,rgba(240,247,248,.19));backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+.glass-material:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(118deg,transparent 18%,#ffffff0c 36%,transparent 50%);box-shadow:inset 1px 1px 0 #ffffffe0,inset -2px -2px 0 #d5ebed80}
+.sheet .glass-panel :is(h1,h2,h3,p,a,span,dt,dd,figcaption,button),.sheet.cutout-ready .glass-panel :is(h1,h2,h3,p,a,span,dt,dd,figcaption,button){color:#fff!important;-webkit-text-fill-color:#fff;-webkit-text-stroke:0!important;text-shadow:0 1px 2px #29495780,0 0 5px #29495745!important}
+#exhibitions.glass-panel .exhibition-list article{border-color:#ffffff40}
+#exhibitions.glass-panel>.text-link{border-color:#ffffff8a}
+.glass-panel a:focus-visible{outline-color:white}

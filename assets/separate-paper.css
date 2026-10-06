@@ -1,0 +1,17 @@
+/* Separate sheets leave open water between each chapter. */
+.sheet{border:0;box-shadow:none;padding:36px 0 70px;background:none}
+.paper-panel{position:relative;isolation:isolate;box-shadow:0 8px 24px #41616d12,0 1px 3px #41616d18;border:1px solid #e0e6e580!important}
+.paper-panel>.paper-material{z-index:-1}
+.paper-material:after{border:1px solid #ffffffb0}
+.sheet>.paper-panel{margin:0 0 clamp(64px,8vw,120px)}
+.sheet>.section.paper-panel{padding:85px 7% 90px!important;scroll-margin-top:36px}
+.intro-paper .hero{padding-bottom:100px}
+#contact .footer{grid-column:1/-1;margin:65px 0 0;padding:30px 0 0;border-top:1px solid #77777720}
+.sheet>.paper-panel:last-child{margin-bottom:0}
+@media(max-width:650px){
+ .sheet{padding:20px 0 40px}
+ .sheet>.paper-panel{margin-bottom:48px}
+ .sheet>.section.paper-panel{padding:50px 7% 55px!important;scroll-margin-top:20px}
+ .intro-paper .hero{padding-bottom:65px}
+ #contact .footer{margin-top:45px}
+}
