@@ -533,3 +533,7 @@ main>.section>.pixel-assembly,main>.section>.pixel-twinkle{position:absolute!imp
 
 /* Let the landscape show subtly through the reading backgrounds. */
 main>.section:before{background:rgba(29,30,26,.90)}
+
+/* A single centered row of section links on every screen size. */
+main>.site-header{display:flex;justify-content:center}
+.site-header>.section-nav{display:flex;flex-direction:row;flex-wrap:nowrap;justify-content:center;align-items:center;gap:clamp(28px,6vw,64px);width:100%}
