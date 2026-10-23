@@ -389,7 +389,7 @@ main>.section{padding:96px 72px}
 .visit dl>div,.work-facts>div{justify-items:center;text-align:center}
 @media(max-width:640px){.visit-links{align-items:center}.visit-links .button{max-width:100%}}
 /* Keep a quiet, high-contrast reading field without outlining the letters. */
-.pixel-assembly{opacity:calc(var(--assembly,0)*.985)}
+.pixel-assembly{opacity:calc(var(--assembly,0)*.90)}
 .prose p,.story-copy p,.process-copy p,.visit dt,.visit dd,.access-copy{color:var(--paper);font-weight:600;text-shadow:none;-webkit-text-stroke:0}
 .work-facts dt,.work-facts dd,.work-note,.text-link,.step{color:var(--paper);font-weight:600}
 .hero-copy:before{background:rgba(29,30,26,.96)}
@@ -530,3 +530,6 @@ main>.section>.pixel-assembly,main>.section>.pixel-twinkle{position:absolute!imp
 
 /* Keep the access map in a single image compositing layer. */
 .access-map>img{display:block;width:100%;height:auto;background:var(--paper)}
+
+/* Let the landscape show subtly through the reading backgrounds. */
+main>.section:before{background:rgba(29,30,26,.90)}
