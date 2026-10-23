@@ -520,3 +520,10 @@ main>.section>.pixel-assembly,main>.section>.pixel-twinkle{position:absolute!imp
 /* Start with readable text; enable decoration only after its images are ready. */
 .hero h1>span{filter:none;mask-image:none}
 .title-effect-ready .hero h1>span{filter:url(#title-silhouette-wear)}
+
+/* A self-contained title image avoids browser-dependent SVG filter failures. */
+.hero h1{display:block;width:2.2em;max-width:100%;line-height:1}
+.hero h1>.title-fallback{filter:none!important;mask:none!important;display:block;font-size:inherit}
+.hero h1>.title-art{display:none;width:100%;height:auto;filter:drop-shadow(0 0 9px var(--ink)) drop-shadow(0 5px 20px var(--ink))}
+.hero h1.title-art-ready>.title-fallback{display:none}
+.hero h1.title-art-ready>.title-art{display:block}

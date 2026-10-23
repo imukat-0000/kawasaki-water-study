@@ -34,21 +34,16 @@
     }
     update();
   });
-  Promise.all(['title-horizontal-strokes.png?v=1','title-tip-pixel-fade.png?v=1'].map(name=>{
-    const image=new Image();image.src=new URL('../assets/ichiyo/'+name,document.baseURI).href;
-    return image.decode();
-  })).then(()=>document.body.classList.add('title-effect-ready')).catch(()=>document.body.classList.remove('title-effect-ready'));
-  const titleDisplacement=document.querySelector('#title-silhouette-wear feDisplacementMap');
-  function resizeTitle(){
-    if(titleDisplacement){
-      const size=parseFloat(getComputedStyle(document.querySelector('.hero h1')).fontSize);
-      titleDisplacement.setAttribute('scale',String(Math.min(108,size*.63)));
-    }
-    schedule();
+  const titleImage=document.querySelector('.title-art');
+  if(titleImage){
+    const ready=()=>{if(titleImage.naturalWidth)titleImage.closest('h1').classList.add('title-art-ready');};
+    titleImage.addEventListener('load',ready);
+    titleImage.addEventListener('error',()=>titleImage.closest('h1').classList.remove('title-art-ready'));
+    if(titleImage.complete)ready();
   }
   addEventListener('scroll',schedule,{passive:true});
-  addEventListener('resize',resizeTitle,{passive:true});
+  addEventListener('resize',schedule,{passive:true});
   addEventListener('hashchange',schedule);
   addEventListener('pageshow',schedule);
-  resizeTitle();
+  schedule();
 })();
