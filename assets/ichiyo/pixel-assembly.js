@@ -1,12 +1,14 @@
-(() => {
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+(async () => {
+  const preference = matchMedia('(prefers-reduced-motion: reduce)');
+  const noiseUrl = new URL('../assets/ichiyo/fine-pixel-displacement.png', document.baseURI).href;
+  const readyMap = new Image(); readyMap.src = noiseUrl;
+  try { await Promise.all([readyMap.decode(), document.fonts.ready]); } catch { return; }
   const clamp = n => Math.max(0, Math.min(1, n));
   const ns = 'http://www.w3.org/2000/svg';
   const definitions = document.createElementNS(ns, 'svg');
   definitions.setAttribute('aria-hidden', 'true');
   definitions.style.cssText = 'position:absolute;width:0;height:0;pointer-events:none';
   const defs = document.createElementNS(ns, 'defs'); definitions.append(defs); document.body.append(definitions);
-  const noiseUrl = new URL('../assets/ichiyo/fine-pixel-displacement.png', document.baseURI).href;
   const sections = [...document.querySelectorAll('main > .section')];
   const backgrounds = sections.map((section, index) => {
     const layer = document.createElement('div');
@@ -35,7 +37,7 @@
     }
     section.prepend(fringe);
     section.prepend(layer);section.classList.add('has-pixel-assembly');
-    return { el:section, layer, value:0 };
+    return { el:section, layer, fringe, value:0 };
   });
   const selector = '.section-heading,.story-heading,.prose>p,.prose>details,.story-photo,.story-copy>h3,.story-copy>p,.story-copy>dl,.story-copy>a,.process-copy,.visit-title,.visit>div:not(.section-heading):not(.pixel-assembly)>dl>div,.visit-links>a,.access-map,.access-copy>p,.access-copy>h3,.station-list>div,.work-note';
   const content = [...document.querySelectorAll(selector)].filter(el => el.closest('main>.section')).map((el, index) => {
@@ -53,14 +55,14 @@
     return {el,value:0,filterId:id,displacement,isVisit:!!el.closest('#visit,#access')};
   });
   const items = [...backgrounds,...content];
-  let running=false, previousTime=0;
+  let running=false, previousTime=0, frame=0, enabled=!preference.matches;
   function target(r, isContent) {
     const h=innerHeight;
     if (isContent) return Math.min(clamp((h-r.top)/24),clamp(r.bottom/18));
     return Math.min(clamp((h-r.top)/12),clamp(r.bottom/8));
   }
   function update(time) {
-    if (document.hidden) { running=false; return; }
+    if (document.hidden || !enabled) { running=false; return; }
     const elapsed=previousTime ? Math.min(100,time-previousTime) : 16;
     previousTime=time;
     const speed=1-Math.exp(-elapsed/45);
@@ -87,13 +89,38 @@
         item.el.style.pointerEvents=p<.15?'none':'';
       }
     });
-    if(moving) requestAnimationFrame(update); else running=false;
+    if(moving) frame=requestAnimationFrame(update); else running=false;
   }
-  function schedule(){if(!running && !document.hidden){running=true;previousTime=0;requestAnimationFrame(update);}}
-  document.addEventListener('visibilitychange',schedule);
+  function schedule(){if(enabled && !running && !document.hidden){running=true;previousTime=0;frame=requestAnimationFrame(update);}}
+  function applyPreference() {
+    enabled=!preference.matches;
+    cancelAnimationFrame(frame);running=false;
+    backgrounds.forEach(item=>{
+      item.el.classList.toggle('has-pixel-assembly',enabled);
+      item.layer.hidden=!enabled;item.fringe.hidden=!enabled;
+      item.value=target(item.el.getBoundingClientRect(),false);
+      item.lastPaint=undefined;
+      item.layer.style.setProperty('--assembly',item.value);
+      item.el.style.setProperty('--edge-visibility',item.value);
+    });
+    content.forEach(item=>{
+      item.el.style.filter='none';item.el.style.opacity='1';item.el.style.pointerEvents='';
+      item.lastPaint=undefined;
+      item.value=target(item.el.getBoundingClientRect(),true);
+    });
+    if(enabled) schedule();
+  }
+  preference.addEventListener('change',applyPreference);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(frame);running=false;}else schedule();});
   document.addEventListener('focusin',schedule);
-  addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule,{passive:true});
-  document.addEventListener('toggle',schedule,true);const readyMap = new Image();
-  readyMap.src = noiseUrl;
-  Promise.all([readyMap.decode(), document.fonts.ready]).then(schedule).catch(schedule);
+  addEventListener('scroll',schedule,{passive:true});
+  addEventListener('resize',schedule,{passive:true});
+  addEventListener('hashchange',schedule);
+  addEventListener('pageshow',schedule);
+  document.querySelectorAll('.story-photo img').forEach(image=>image.addEventListener('load',schedule));
+  if ('ResizeObserver' in window) {
+    const resizeObserver=new ResizeObserver(schedule);
+    sections.forEach(section=>resizeObserver.observe(section));
+  }
+  applyPreference();
 })();

@@ -187,7 +187,7 @@ main>.section:after{display:none!important}
 /* Pixel steps replace the blurred edges, echoing the source artwork. */
 main>.section:before,.hero-copy:before,main>.site-header:before,footer>a:before,footer>small:before{
  filter:none;border-radius:0;
- mask-image:url('pixel-shade-mask.svg?v=4');mask-size:100% 100%;mask-repeat:no-repeat;
+ mask-image:url('pixel-shade-mask.svg?v=5');mask-size:100% 100%;mask-repeat:no-repeat;
 }
 main>.section:before{inset:16px 0;background:rgba(29,30,26,.91)}
 .hero-copy:before{inset:12px 10%;background:rgba(29,30,26,.84)}
@@ -266,7 +266,7 @@ body>footer:before{top:-20px}
 body>footer:after{bottom:-20px;transform:scaleY(-1)}
 /* Scattered tiles gather behind the copy as each section enters the viewport. */
 main>.has-pixel-assembly:before{display:none!important}
-.pixel-assembly{position:absolute;inset:0 -24px;z-index:-1;pointer-events:none;mask:url('pixel-shade-mask.svg?v=4') 0 0/100% 100% no-repeat}
+.pixel-assembly{position:absolute;inset:0 -24px;z-index:-1;pointer-events:none;mask:url('pixel-shade-mask.svg?v=5') 0 0/100% 100% no-repeat}
 .pixel-assembly i{display:block;position:absolute;background:rgba(29,30,26,.96);transform:translate(var(--dx),var(--dy)) scale(.35);transition:transform 900ms cubic-bezier(.2,.75,.25,1);transition-delay:var(--delay);transform-origin:center}
 .pixels-collected>.pixel-assembly i{transform:translate(0,0) scale(1)}
 @media(max-width:640px){.pixel-assembly{inset:0 -12px}.pixel-assembly i{background:rgba(29,30,26,.97)}}
@@ -395,7 +395,7 @@ main>.section{padding:96px 72px}
 .hero-copy:before{background:rgba(29,30,26,.96)}
 /* Keep the scattered fringe outside the reading field, even on tall sections. */
 .pixel-assembly,main>.section:before,.hero-copy:before{
- mask-image:linear-gradient(#000,#000),url('pixel-shade-mask.svg?v=4');
+ mask-image:linear-gradient(#000,#000),url('pixel-shade-mask.svg?v=5');
  mask-size:calc(100% - 32px) calc(100% - 48px),100% 100%;
  mask-position:center,center;mask-repeat:no-repeat;mask-composite:add;
 }
@@ -430,7 +430,7 @@ main>.section>.pixel-assembly{width:auto;max-width:none!important;margin:0!impor
 /* Only the outer pixels breathe; the solid reading field stays still. */
 .pixel-assembly:before,.pixel-assembly:after{
  content:'';position:absolute;inset:-12px;pointer-events:none;background:var(--ink);
- mask-image:url('pixel-shade-mask.svg?v=4'),linear-gradient(#000,#000);
+ mask-image:url('pixel-shade-mask.svg?v=5'),linear-gradient(#000,#000);
  mask-size:100% 100%,calc(100% - 52px) calc(100% - 72px);
  mask-position:center;mask-repeat:no-repeat;mask-composite:subtract;
  animation:shade-pixel-drift 6s ease-in-out infinite alternate;
@@ -450,7 +450,7 @@ main>.has-pixel-assembly:after{
  content:'';display:block!important;position:absolute!important;inset:-20px -28px!important;
  width:auto!important;height:auto!important;z-index:-1;pointer-events:none;
  background:var(--ink)!important;border-radius:0;filter:none;
- mask-image:url('pixel-shade-mask.svg?v=4'),linear-gradient(#000,#000);
+ mask-image:url('pixel-shade-mask.svg?v=5'),linear-gradient(#000,#000);
  mask-size:100% 100%,calc(100% - 76px) calc(100% - 96px);
  mask-position:center;mask-repeat:no-repeat;mask-composite:subtract;
  animation:outer-pixel-float 3.8s ease-in-out infinite alternate;
@@ -503,3 +503,16 @@ main>.section>.pixel-twinkle{
 .hero h1>span{filter:url(#title-silhouette-wear)}
 
 .hero h1>span{mask-image:none}
+/* Keep decorative layers outside layout and honour live motion preferences. */
+main>.section>.pixel-assembly,main>.section>.pixel-twinkle{position:absolute!important;max-width:none!important;margin:0!important;pointer-events:none}
+.pixel-assembly[hidden],.pixel-twinkle[hidden]{display:none!important}
+@media(prefers-reduced-motion:reduce){
+ .pixel-content{opacity:1!important;filter:none!important;transform:none!important}
+ .pixel-assembly,.pixel-twinkle{display:none!important}
+}
+@media(max-width:640px){.hero-info{max-width:100%}.hero .venue{overflow-wrap:normal}.works>.work-story{min-width:0}.works .story-copy h3{font-size:clamp(17px,5.1vw,20px)}}
+@media(max-width:640px){
+ main>.works{padding-inline:16px;column-gap:16px}
+ .works .story-copy p{text-wrap:pretty;letter-spacing:0;overflow-wrap:break-word;word-break:normal}
+ .work-image-link{touch-action:manipulation}
+}
