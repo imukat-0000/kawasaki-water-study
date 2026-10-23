@@ -89,7 +89,7 @@ main>.section:before,main>.section:after,main>.site-header:before,main>.site-hea
 .process-timeline li{border:0;padding:0}
 .story-copy{transform:none;transition:none}
 .story-photo{transform:none;transition:none}
-.prose,.story-copy,.process-copy,.access-copy,.visit>div{background:none;text-shadow:none}
+.prose,.story-copy,.process-copy,.access-copy,.visit>div:not(.pixel-assembly):not(.pixel-twinkle){background:none;text-shadow:none}
 .text-link,summary,dl>div,.button{border-color:currentColor}
 .button:hover{background:none;color:inherit}
 footer{padding:32px 48px;border:0;color:var(--paper)}
@@ -539,7 +539,7 @@ main>.site-header{display:flex;justify-content:center}
 .site-header>.section-nav{display:flex;flex-direction:row;flex-wrap:nowrap;justify-content:center;align-items:center;gap:clamp(28px,6vw,64px);width:100%}
 
 /* The reading shade dissolves as one soft field, without moving tiles. */
-.pixel-assembly{background:var(--ink)}
+main>.section>.pixel-assembly{background:var(--ink)}
 
 /* Stack each work's photograph and description on phones. */
 @media(max-width:640px){
