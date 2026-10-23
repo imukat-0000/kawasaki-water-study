@@ -527,3 +527,6 @@ main>.section>.pixel-assembly,main>.section>.pixel-twinkle{position:absolute!imp
 .hero h1>.title-art{display:none;width:100%;height:auto;filter:drop-shadow(0 0 9px var(--ink)) drop-shadow(0 5px 20px var(--ink))}
 .hero h1.title-art-ready>.title-fallback{display:none}
 .hero h1.title-art-ready>.title-art{display:block}
+
+/* Keep the access map in a single image compositing layer. */
+.access-map>img{display:block;width:100%;height:auto;background:var(--paper)}
