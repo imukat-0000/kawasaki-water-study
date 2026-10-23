@@ -42,6 +42,8 @@
   const selector = '.section-heading,.story-heading,.prose>p,.prose>details,.story-photo,.story-copy>h3,.story-copy>p,.story-copy>dl,.story-copy>a,.process-copy,.visit-title,.visit>div:not(.section-heading):not(.pixel-assembly)>dl>div,.visit-links>a,.access-map,.access-copy>p,.access-copy>h3,.station-list>div,.work-note';
   const content = [...document.querySelectorAll(selector)].filter(el => el.closest('main>.section')).map((el, index) => {
     el.classList.add('pixel-content');
+    const isText = !el.matches('.story-photo,.access-map');
+    if (isText) return {el,value:0,isText:true};
     const id = 'content-pixel-scatter-' + index;
     const filter = document.createElementNS(ns, 'filter');
     filter.id = id;
@@ -70,7 +72,7 @@
     const positions=items.map(item => item.el.getBoundingClientRect());
     items.forEach((item,index) => {
       const desired=item.el.contains(document.activeElement) ? 1 : target(positions[index], !item.layer);
-      const settling = item.layer ? 1-Math.exp(-elapsed/24) : item.isVisit && desired > item.value ? 1-Math.exp(-elapsed/90) : speed;
+      const settling = item.layer ? 1-Math.exp(-elapsed/24) : item.isText ? 1-Math.exp(-elapsed/100) : item.isVisit && desired > item.value ? 1-Math.exp(-elapsed/90) : speed;
       item.value += (desired-item.value)*settling;
       if (Math.abs(desired-item.value)<.002) item.value=desired;else moving=true;
       const p=item.value;
@@ -82,9 +84,14 @@
         item.el.style.setProperty('--drift-play',p>.995?'running':'paused');
         item.el.style.setProperty('--edge-visibility',p.toFixed(3));
       } else {
-        item.displacement.setAttribute('scale', ((1-p)*90).toFixed(2));
-        item.el.style.filter=(p>.995 || p<.02)?'none':`url(#${item.filterId})`;
-        item.el.style.opacity=p<.02?'0':'1';
+        if (item.isText) {
+          item.el.style.filter=(p>.995 || p<.002)?'none':`blur(${((1-p)*10).toFixed(2)}px)`;
+          item.el.style.opacity=p.toFixed(3);
+        } else {
+          item.displacement.setAttribute('scale', ((1-p)*90).toFixed(2));
+          item.el.style.filter=(p>.995 || p<.02)?'none':`url(#${item.filterId})`;
+          item.el.style.opacity=p<.02?'0':'1';
+        }
         item.el.style.setProperty('--content-assembly',p.toFixed(3));
         item.el.style.pointerEvents=p<.15?'none':'';
       }
