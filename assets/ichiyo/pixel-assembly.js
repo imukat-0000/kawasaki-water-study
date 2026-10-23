@@ -1,14 +1,7 @@
 (async () => {
   const preference = matchMedia('(prefers-reduced-motion: reduce)');
-  const noiseUrl = new URL('../assets/ichiyo/fine-pixel-displacement.png', document.baseURI).href;
-  const readyMap = new Image(); readyMap.src = noiseUrl;
-  try { await Promise.all([readyMap.decode(), document.fonts.ready]); } catch { return; }
+  try { await document.fonts.ready; } catch { return; }
   const clamp = n => Math.max(0, Math.min(1, n));
-  const ns = 'http://www.w3.org/2000/svg';
-  const definitions = document.createElementNS(ns, 'svg');
-  definitions.setAttribute('aria-hidden', 'true');
-  definitions.style.cssText = 'position:absolute;width:0;height:0;pointer-events:none';
-  const defs = document.createElementNS(ns, 'defs'); definitions.append(defs); document.body.append(definitions);
   const sections = [...document.querySelectorAll('main > .section')];
   const backgrounds = sections.map((section, index) => {
     const layer = document.createElement('div');
@@ -42,19 +35,7 @@
   const selector = '.section-heading,.story-heading,.prose>p,.prose>details,.story-photo,.story-copy>h3,.story-copy>p,.story-copy>dl,.story-copy>a,.process-copy,.visit-title,.visit>div:not(.section-heading):not(.pixel-assembly)>dl>div,.visit-links>a,.access-map,.access-copy>p,.access-copy>h3,.station-list>div,.work-note';
   const content = [...document.querySelectorAll(selector)].filter(el => el.closest('main>.section')).map((el, index) => {
     el.classList.add('pixel-content');
-    const isText = !el.matches('.story-photo,.access-map');
-    if (isText) return {el,value:0,isText:true};
-    const id = 'content-pixel-scatter-' + index;
-    const filter = document.createElementNS(ns, 'filter');
-    filter.id = id;
-    filter.setAttribute('x','-12%');filter.setAttribute('y','-12%');filter.setAttribute('width','124%');filter.setAttribute('height','124%');
-    filter.setAttribute('color-interpolation-filters','sRGB');
-    const image = document.createElementNS(ns,'feImage');
-    image.setAttribute('href',noiseUrl);image.setAttribute('x','0');image.setAttribute('y','0');image.setAttribute('width','100%');image.setAttribute('height','100%');image.setAttribute('preserveAspectRatio','none');image.setAttribute('result','pixelMap');
-    const displacement = document.createElementNS(ns,'feDisplacementMap');
-    displacement.setAttribute('in','SourceGraphic');displacement.setAttribute('in2','pixelMap');displacement.setAttribute('xChannelSelector','R');displacement.setAttribute('yChannelSelector','G');displacement.setAttribute('scale','140');
-    filter.append(image,displacement);defs.append(filter);
-    return {el,value:0,filterId:id,displacement,isVisit:!!el.closest('#visit,#access')};
+    return {el,value:0};
   });
   const items = [...backgrounds,...content];
   let running=false, previousTime=0, frame=0, enabled=!preference.matches;
@@ -67,12 +48,11 @@
     if (document.hidden || !enabled) { running=false; return; }
     const elapsed=previousTime ? Math.min(100,time-previousTime) : 16;
     previousTime=time;
-    const speed=1-Math.exp(-elapsed/45);
     let moving=false;
     const positions=items.map(item => item.el.getBoundingClientRect());
     items.forEach((item,index) => {
       const desired=item.el.contains(document.activeElement) ? 1 : target(positions[index], !item.layer);
-      const settling = item.layer ? 1-Math.exp(-elapsed/24) : item.isText ? 1-Math.exp(-elapsed/100) : item.isVisit && desired > item.value ? 1-Math.exp(-elapsed/90) : speed;
+      const settling = 1-Math.exp(-elapsed/(item.layer ? 24 : 100));
       item.value += (desired-item.value)*settling;
       if (Math.abs(desired-item.value)<.002) item.value=desired;else moving=true;
       const p=item.value;
@@ -84,14 +64,8 @@
         item.el.style.setProperty('--drift-play',p>.995?'running':'paused');
         item.el.style.setProperty('--edge-visibility',p.toFixed(3));
       } else {
-        if (item.isText) {
-          item.el.style.filter=(p>.995 || p<.002)?'none':`blur(${((1-p)*10).toFixed(2)}px)`;
-          item.el.style.opacity=p.toFixed(3);
-        } else {
-          item.displacement.setAttribute('scale', ((1-p)*90).toFixed(2));
-          item.el.style.filter=(p>.995 || p<.02)?'none':`url(#${item.filterId})`;
-          item.el.style.opacity=p<.02?'0':'1';
-        }
+        item.el.style.filter=(p>.995 || p<.002)?'none':`blur(${((1-p)*10).toFixed(2)}px)`;
+        item.el.style.opacity=p.toFixed(3);
         item.el.style.setProperty('--content-assembly',p.toFixed(3));
         item.el.style.pointerEvents=p<.15?'none':'';
       }
