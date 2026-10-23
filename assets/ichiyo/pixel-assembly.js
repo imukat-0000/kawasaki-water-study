@@ -29,13 +29,12 @@
   const selector = '.section-heading,.story-heading,.prose>p,.prose>details,.story-photo,.story-copy>h3,.story-copy>p,.story-copy>dl,.story-copy>a,.process-copy,.visit-title,.visit>div:not(.section-heading):not(.pixel-assembly)>dl>div,.visit-links>a,.access-map,.access-copy>p,.access-copy>h3,.station-list>div,.work-note';
   const content = [...document.querySelectorAll(selector)].filter(el => el.closest('main>.section')).map((el, index) => {
     el.classList.add('pixel-content');
-    return {el,value:0};
+    return {el,section:el.closest('main>.section'),value:0};
   });
   const items = [...backgrounds,...content];
   let running=false, previousTime=0, frame=0, enabled=!preference.matches;
-  function target(r, isContent) {
+  function target(r) {
     const h=innerHeight;
-    if (isContent) return Math.min(clamp((h-r.top)/24),clamp(r.bottom/18));
     return Math.min(clamp((h-r.top)/24),clamp(r.bottom/18));
   }
   function update(time) {
@@ -43,9 +42,9 @@
     const elapsed=previousTime ? Math.min(100,time-previousTime) : 16;
     previousTime=time;
     let moving=false;
-    const positions=items.map(item => item.el.getBoundingClientRect());
+    const positions=items.map(item => (item.section || item.el).getBoundingClientRect());
     items.forEach((item,index) => {
-      const desired=item.el.contains(document.activeElement) ? 1 : target(positions[index], !item.layer);
+      const desired=(item.section || item.el).contains(document.activeElement) ? 1 : target(positions[index]);
       const settling = 1-Math.exp(-elapsed/100);
       item.value += (desired-item.value)*settling;
       if (Math.abs(desired-item.value)<.002) item.value=desired;else moving=true;
@@ -76,7 +75,7 @@
     backgrounds.forEach(item=>{
       item.el.classList.toggle('has-pixel-assembly',enabled);
       item.layer.hidden=!enabled;item.fringe.hidden=!enabled;
-      item.value=target(item.el.getBoundingClientRect(),false);
+      item.value=target(item.el.getBoundingClientRect());
       item.lastPaint=undefined;
       item.layer.style.setProperty('--assembly',item.value);
       item.el.style.setProperty('--edge-visibility',item.value);
@@ -84,7 +83,7 @@
     content.forEach(item=>{
       item.el.style.filter='none';item.el.style.opacity='1';item.el.style.pointerEvents='';
       item.lastPaint=undefined;
-      item.value=target(item.el.getBoundingClientRect(),true);
+      item.value=target(item.section.getBoundingClientRect());
     });
     if(enabled) schedule();
   }
