@@ -540,3 +540,13 @@ main>.site-header{display:flex;justify-content:center}
 
 /* The reading shade dissolves as one soft field, without moving tiles. */
 .pixel-assembly{background:var(--ink)}
+
+/* Stack each work's photograph and description on phones. */
+@media(max-width:640px){
+ main>.works{grid-template-columns:minmax(0,1fr);padding-inline:28px;row-gap:56px}
+ .works>.story-heading{margin-bottom:0}
+ .works>.work-story,.works>.work-story.reverse{gap:24px}
+ .works .story-copy h3{font-size:22px;margin-bottom:20px}
+ .works .story-copy p{font-size:15px;line-height:2.1;text-wrap:wrap}
+ .works .work-facts dt,.works .work-facts dd{font-size:13px}
+}
