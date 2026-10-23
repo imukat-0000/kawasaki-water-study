@@ -8,12 +8,6 @@
     layer.className = 'pixel-assembly'; layer.setAttribute('aria-hidden', 'true');
     let seed = index + 19;
     const random = () => { seed = seed * 16807 % 2147483647; return (seed - 1) / 2147483646; };
-    const tiles = [];
-    for (let y = 0; y < 16; y++) for (let x = 0; x < 16; x++) {
-      const tile = document.createElement('i');
-      tile.style.cssText = `left:${x / 16 * 100}%;top:${y / 16 * 100}%;width:calc(${100 / 16}% + 1px);height:calc(${100 / 16}% + 1px);--dx:${(random() - .5) * 260}px;--dy:${(random() - .5) * 220}px;`;
-      tiles.push(tile);layer.append(tile);
-    }
     const fringe=document.createElement('div');
     fringe.className='pixel-twinkle';fringe.setAttribute('aria-hidden','true');
     for(let i=0;i<180;i++) {
@@ -42,7 +36,7 @@
   function target(r, isContent) {
     const h=innerHeight;
     if (isContent) return Math.min(clamp((h-r.top)/24),clamp(r.bottom/18));
-    return Math.min(clamp((h-r.top)/12),clamp(r.bottom/8));
+    return Math.min(clamp((h-r.top)/24),clamp(r.bottom/18));
   }
   function update(time) {
     if (document.hidden || !enabled) { running=false; return; }
@@ -52,13 +46,16 @@
     const positions=items.map(item => item.el.getBoundingClientRect());
     items.forEach((item,index) => {
       const desired=item.el.contains(document.activeElement) ? 1 : target(positions[index], !item.layer);
-      const settling = 1-Math.exp(-elapsed/(item.layer ? 24 : 100));
+      const settling = 1-Math.exp(-elapsed/100);
       item.value += (desired-item.value)*settling;
       if (Math.abs(desired-item.value)<.002) item.value=desired;else moving=true;
       const p=item.value;
       if (item.lastPaint !== undefined && Math.abs(item.lastPaint-p)<.001) return;
       item.lastPaint=p;
       if(item.layer) {
+        const blur=(p>.995 || p<.002)?'none':`blur(${((1-p)*10).toFixed(2)}px)`;
+        item.layer.style.filter=blur;
+        item.fringe.style.filter=blur;
         item.layer.style.setProperty('--assembly',p.toFixed(3));
         item.layer.style.setProperty('--drift-play',p>.995?'running':'paused');
         item.el.style.setProperty('--drift-play',p>.995?'running':'paused');
