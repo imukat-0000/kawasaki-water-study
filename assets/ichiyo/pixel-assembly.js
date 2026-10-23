@@ -45,7 +45,7 @@
     const positions=items.map(item => (item.section || item.el).getBoundingClientRect());
     items.forEach((item,index) => {
       const desired=(item.section || item.el).contains(document.activeElement) ? 1 : target(positions[index]);
-      const settling = 1-Math.exp(-elapsed/100);
+      const settling = 1-Math.exp(-elapsed/180);
       item.value += (desired-item.value)*settling;
       if (Math.abs(desired-item.value)<.002) item.value=desired;else moving=true;
       const p=item.value;
