@@ -34,6 +34,10 @@
     }
     update();
   });
+  Promise.all(['title-horizontal-strokes.png?v=1','title-tip-pixel-fade.png?v=1'].map(name=>{
+    const image=new Image();image.src=new URL('../assets/ichiyo/'+name,document.baseURI).href;
+    return image.decode();
+  })).then(()=>document.body.classList.add('title-effect-ready')).catch(()=>document.body.classList.remove('title-effect-ready'));
   const titleDisplacement=document.querySelector('#title-silhouette-wear feDisplacementMap');
   function resizeTitle(){
     if(titleDisplacement){

@@ -516,3 +516,7 @@ main>.section>.pixel-assembly,main>.section>.pixel-twinkle{position:absolute!imp
  .works .story-copy p{text-wrap:pretty;letter-spacing:0;overflow-wrap:break-word;word-break:normal}
  .work-image-link{touch-action:manipulation}
 }
+
+/* Start with readable text; enable decoration only after its images are ready. */
+.hero h1>span{filter:none;mask-image:none}
+.title-effect-ready .hero h1>span{filter:url(#title-silhouette-wear)}
